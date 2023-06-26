@@ -1,5 +1,5 @@
 fbcp-ST7796
-SPI display driver for Raspberry Pi, Especially for ST7796S This is a modified version of fbcp-ili9341(https://github.com/juj/fbcp-ili9341) Use the follwing commands to use with ST7796S display
+SPI display driver for Raspberry Pi, Especially for ST7796S This is a modified version of [fbcp-ili9341](https://github.com/juj/fbcp-ili9341) Use the follwing commands to use with ST7796S display
 ```bash
 sudo apt-get install cmake
 cd ~
