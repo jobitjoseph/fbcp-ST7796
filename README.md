@@ -34,7 +34,7 @@ hdmi_force_hotplug=1
 
 This repository implements a driver for certain SPI-based LCD displays for Raspberry Pi A, B, 2, 3, 4 and Zero.
 
-![PiTFT display](/example.jpg "Adafruit PiTFT 2.8 with ILI9341 controller")
+![PiTFT display](https://github.com/juj/fbcp-ili9341/blob/master/example.jpg)
 
 The work was motivated by curiosity after seeing this series of videos on the RetroManCave YouTube channel:
  - [RetroManCave: Waveshare 3.5" Raspberry Pi Screen | Review](https://www.youtube.com/watch?v=SGMC0t33C50)
