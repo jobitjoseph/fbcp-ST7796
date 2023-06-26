@@ -5,7 +5,7 @@ Use the follwing commands to use with ST7796S display
 ```bash
 sudo apt-get install cmake
 cd ~
-git clone https://github.com/juj/fbcp-ili9341.git
+git clone https://github.com/jobitjoseph/fbcp-ST7796.git
 cd fbcp-ili9341
 mkdir build
 cd build
