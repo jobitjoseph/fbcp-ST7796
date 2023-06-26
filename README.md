@@ -3,7 +3,7 @@ SPI display driver for Raspberry Pi, Especially for ST7796S This is a modified v
 ```bash
 sudo apt-get install cmake
 cd ~
-git clone https://github.com/juj/fbcp-ili9341.git
+git clone https://github.com/jobitjoseph/fbcp-ST7796.git
 cd fbcp-ili9341
 mkdir build
 cd build
