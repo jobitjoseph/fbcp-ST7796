@@ -9,7 +9,7 @@ mkdir build
 cd build
 cmake -DDMA_TX_CHANNEL=7 -DDMA_RX_CHANNEL=5 -DST7796S=ON -DGPIO_TFT_DATA_CONTROL=25 -DGPIO_TFT_RESET_PIN=27 -DGPIO_TFT_BACKLIGHT=24 -DSPI_BUS_CLOCK_DIVISOR=4 -DBACKLIGHT_CONTROL=ON -DDISPLAY_SWAP_BGR=ON-DSTATISTICS=0  ..
 make -j
-sudo ./fbcp-ST7796
+sudo ./fbcp-ili9341
 ```
 For running the driver at startup
 ```bash
@@ -17,7 +17,7 @@ sudo nano /etc/rc.local
 ```
 add the following line to the file, replace pi with your username.
 ```bash
-sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
+sudo /home/pi/fbcp-ST7796/build/fbcp-ili9341 &
 ```
 add the following to /boot/config.txt. Change dtoverlay=vc4-kms-v3d to dtoverlay=vc4-fkms-v3d if not working.
 ```bash
