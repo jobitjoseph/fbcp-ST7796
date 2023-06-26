@@ -1,40 +1,8 @@
-# fbcp-ST7796
-SPI display driver for Raspberry Pi, Especially for ST7796S
-This is a modified version of fbcp-ili9341(https://github.com/juj/fbcp-ili9341)
-Use the follwing commands to use with ST7796S display
-```bash
-sudo apt-get install cmake
-cd ~
-git clone https://github.com/jobitjoseph/fbcp-ST7796.git
-cd fbcp-ST7796
-mkdir build
-cd build
-cmake -DDMA_TX_CHANNEL=7 -DDMA_RX_CHANNEL=5 -DST7796S=ON -DGPIO_TFT_DATA_CONTROL=25 -DGPIO_TFT_RESET_PIN=27 -DGPIO_TFT_BACKLIGHT=24 -DSPI_BUS_CLOCK_DIVISOR=4 -DBACKLIGHT_CONTROL=ON -DDISPLAY_SWAP_BGR=ON-DSTATISTICS=0  ..
-make -j
-sudo ./fbcp-ST7796
-```
-
-For running the driver at startup
-```bash
-sudo nano /etc/rc.local
-```
-add the following line to the file, replace pi with your username.
-```bash
-sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &
-```
-add the following to /boot/config.txt. Change dtoverlay=vc4-kms-v3d to dtoverlay=vc4-fkms-v3d if not working.
-```bash
-max_framebuffers=2
-hdmi_group=2
-hdmi_mode=87
-hdmi_cvt=480 320 60 1 0 0 0
-hdmi_force_hotplug=1
-```
 # Introduction
 
 This repository implements a driver for certain SPI-based LCD displays for Raspberry Pi A, B, 2, 3, 4 and Zero.
 
-![PiTFT display](https://github.com/juj/fbcp-ili9341/blob/master/example.jpg)
+![PiTFT display](/example.jpg "Adafruit PiTFT 2.8 with ILI9341 controller")
 
 The work was motivated by curiosity after seeing this series of videos on the RetroManCave YouTube channel:
  - [RetroManCave: Waveshare 3.5" Raspberry Pi Screen | Review](https://www.youtube.com/watch?v=SGMC0t33C50)
