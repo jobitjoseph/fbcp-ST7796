@@ -97,9 +97,9 @@ if (LOW_BATTERY_PIN)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLOW_BATTERY_PIN=${LOW_BATTERY_PIN}")
 endif()
 
-option(BACKLIGHT_CONTROL "If true, enables fbcp-ili9341 to take control of backlight" OFF)
+option(BACKLIGHT_CONTROL "If true, enables fbcp-ST7796 to take control of backlight" OFF)
 if (BACKLIGHT_CONTROL)
-	message(STATUS "Enabling fbcp-ili9341 backlight control")
+	message(STATUS "Enabling fbcp-ST7796 backlight control")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBACKLIGHT_CONTROL")
 endif()
 
@@ -136,9 +136,9 @@ else()
 	message(FATAL_ERROR "Please define -DSPI_BUS_CLOCK_DIVISOR=<some even number> on the CMake command line! (see files ili9341.h/waveshare35b.h for details) This parameter along with core_freq=xxx in /boot/config.txt defines the SPI display speed. Smaller divisor number=faster speed, higher number=slower.")
 endif()
 
-option(KERNEL_MODULE_CLIENT "If enabled, run fbcp-ili9341 userland program against the kernel module found in kernel/ subdirectory (must be started before the userland program)" OFF)
+option(KERNEL_MODULE_CLIENT "If enabled, run fbcp-ST7796 userland program against the kernel module found in kernel/ subdirectory (must be started before the userland program)" OFF)
 if (KERNEL_MODULE_CLIENT)
-	message(STATUS "KERNEL_MODULE_CLIENT enabled, building userland program to operate against fbcp-ili9341 kernel module")
+	message(STATUS "KERNEL_MODULE_CLIENT enabled, building userland program to operate against fbcp-ST7796 kernel module")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DKERNEL_MODULE_CLIENT=1")
 endif()
 
@@ -162,7 +162,7 @@ endif()
 
 option(KEDEI_V63_MPI3501 "Target KeDei 3.5 inch SPI TFTLCD 480*320 16bit/186bit version 6.3 2018/4/9 display (MPI3501)" OFF)
 
-option(USE_DMA_TRANSFERS "If enabled, fbcp-ili9341 utilizes DMA to transfer data to the display. Otherwise, Polled SPI mode is used to drive communication with the SPI display" ON)
+option(USE_DMA_TRANSFERS "If enabled, fbcp-ST7796 utilizes DMA to transfer data to the display. Otherwise, Polled SPI mode is used to drive communication with the SPI display" ON)
 
 # KeDei does not do DMA well, since after each 32-bit word one needs to refresh the chip select signal, preventing DMA batch operations altogether.
 if (KEDEI_V63_MPI3501)
@@ -274,4 +274,4 @@ endif()
 
 add_executable(fbcp-ili9341 ${sourceFiles})
 
-target_link_libraries(fbcp-ili9341 pthread bcm_host atomic)
+target_link_libraries(fbcp-ST7796 pthread bcm_host atomic)
