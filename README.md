@@ -37,6 +37,10 @@ hdmi_force_hotplug=1
 ```
 
 for gt911 touch screem 
+add the following to /boot/congig.txt
+```bash
+dtoverlay=goodix
+```
 to check touch driver 
 ```bash
 xinput list
