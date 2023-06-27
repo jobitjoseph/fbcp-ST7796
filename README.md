@@ -21,12 +21,53 @@ sudo /home/pi/fbcp-ST7796/build/fbcp-ili9341 &
 ```
 add the following to /boot/config.txt. Change dtoverlay=vc4-kms-v3d to dtoverlay=vc4-fkms-v3d if not working.
 ```bash
-max_framebuffers=2
-hdmi_group=2
-hdmi_mode=87
 hdmi_cvt=480 320 60 1 0 0 0
+max_framebuffers=2
+framebuffer_width=480
+framebuffer_height=320
+hdmi_drive=2
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+overscan_left=20
+overscan_right=12
+overscan_top=10
+overscan_bottom=10
 hdmi_force_hotplug=1
 ```
+
+for gt911 touch screem 
+to check touch driver 
+```bash
+xinput list
+```
+you should be looking under virtual core pointer. use the following command to get current matrix
+```bash
+xinput list-props 'SynPS/2 Synaptics TouchPad' | grep "Coordinate Transformation Matrix"
+```
+change the calibaration matrix if the touch is not correct. use the following to test
+```bash
+-90
+xinput set-prop 'pointer:Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
+or 90
+xinput set-prop 'pointer:Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+or 180 
+xinput set-prop 'pointer:Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' -1 0 1 0 -1 1 0 0 1
+```
+Once the correct matrix is identified , add it to udev rule for auto calibaration on startup.
+```bash
+sudo nano /etc/udev/rules.d/98-touchscreen-cal.rules
+```
+add the following 
+```bash
+ATTRS{name}=="Goodix Capacitive TouchScreen", ENV{LIBINPUT_CALIBRATION_MATRIX}="0 1 0 -1 0 1 0 0 1"
+```
+more info on touch screen calibaration
+[link1](https://wiki.ubuntu.com/X/InputCoordinateTransformation)
+[link2](https://wiki.archlinux.org/title/Talk:Calibrating_Touchscreen)
+[link3](https://wiki.archlinux.org/title/Calibrating_Touchscreen)
+
+
 # Introduction
 
 This repository implements a driver for certain SPI-based LCD displays for Raspberry Pi A, B, 2, 3, 4 and Zero.
